@@ -48,8 +48,8 @@ export function generateChoices(answer, count = 4) {
   let attempts = 0;
   while (choices.size < count && attempts < 100) {
     attempts++;
-    const offset = randInt(-10, 10);
-    if (offset !== 0) choices.add(Math.max(0, answer + offset));
+    const candidate = answer + randInt(-10, 10);
+    if (candidate !== answer && candidate >= 0) choices.add(candidate);
   }
   // Pad with sequential fallback if still short
   let pad = 1;
