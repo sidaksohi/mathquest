@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathQuest 🌟</title>
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- HUD (shown during gameplay) -->
+    <div id="hud" style="display:none">
+      <div class="hud-item">
+        <span class="hud-label">Score</span>
+        <span class="hud-value hud-score" id="hud-score">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Streak</span>
+        <span class="hud-value hud-streak" id="hud-streak">—</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Lives</span>
+        <span class="hud-value hud-lives" id="hud-lives">∞</span>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <div id="screen-menu" class="screen active">
+      <h1 class="game-title">MathQuest 🌟</h1>
+      <p style="color:var(--text-dim);text-align:center">Fun math for every age!</p>
+      <div class="menu-buttons">
+        <button class="btn btn-primary"   id="btn-story">📖 Story Mode</button>
+        <button class="btn btn-secondary" id="btn-arcade">🎮 Arcade Mode</button>
+        <button class="btn btn-accent"    id="btn-highscore-display">🏆 Best: <span id="menu-highscore">0</span></button>
+      </div>
+    </div>
+
+    <!-- STORY MAP -->
+    <div id="screen-story" class="screen">
+      <h2 style="color:var(--primary)">📖 Story Mode</h2>
+      <div class="chapter-list" id="chapter-list"></div>
+      <button class="btn btn-secondary" id="btn-story-back">← Back</button>
+    </div>
+
+    <!-- GAME (arcade + story practice) -->
+    <div id="screen-game" class="screen">
+      <div class="mode-label" id="mode-label"></div>
+      <div class="question-card">
+        <div class="question-text" id="question-text"></div>
+        <div class="question-hint" id="question-hint"></div>
+      </div>
+      <div class="answer-grid" id="answer-grid"></div>
+      <div id="hint-btn-wrap"></div>
+      <button class="btn btn-secondary" id="btn-game-back"
+              style="font-size:0.82em;padding:10px 20px;min-height:44px">🏠 Menu</button>
+    </div>
+
+    <!-- BOSS -->
+    <div id="screen-boss" class="screen">
+      <div class="boss-card">
+        <span class="boss-emoji" id="boss-emoji"></span>
+        <div class="boss-name" id="boss-name"></div>
+        <div class="boss-desc" id="boss-desc"></div>
+      </div>
+      <div class="boss-timer"    id="boss-timer"></div>
+      <div class="boss-progress" id="boss-progress"></div>
+      <div class="question-card">
+        <div class="question-text" id="boss-question"></div>
+      </div>
+      <div class="answer-grid" id="boss-answer-grid"></div>
+    </div>
+  </div>
+
+  <!-- Floating emoji feedback -->
+  <div class="feedback-overlay" id="feedback-overlay"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
