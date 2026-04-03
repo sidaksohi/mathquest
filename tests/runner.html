@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MathQuest Tests</title>
+  <style>
+    body { font-family: monospace; padding: 24px; background: #1a1a2e; color: #eee; }
+    h1 { color: #e94560; margin-bottom: 16px; }
+    .pass { color: #43e97b; padding: 4px 0; }
+    .fail { color: #e94560; padding: 4px 0; }
+    .summary { margin-top: 24px; font-size: 1.3em; font-weight: bold; padding: 12px;
+               background: #16213e; border-radius: 8px; }
+    .summary.pass { border-left: 4px solid #43e97b; }
+    .summary.fail { border-left: 4px solid #e94560; }
+  </style>
+</head>
+<body>
+  <h1>🧪 MathQuest Test Runner</h1>
+  <div id="output"></div>
+  <script type="module">
+    import { getResults } from './harness.js';
+    import './math.test.js';
+    import './state.test.js';
+    import './story.test.js';
+    import './arcade.test.js';
+    import './boss.test.js';
+
+    const results = getResults();
+    const output = document.getElementById('output');
+
+    results.forEach(r => {
+      const div = document.createElement('div');
+      div.className = r.pass ? 'pass' : 'fail';
+      div.textContent = `${r.pass ? '✅' : '❌'} ${r.description}${r.error ? ': ' + r.error : ''}`;
+      output.appendChild(div);
+    });
+
+    const passed = results.filter(r => r.pass).length;
+    const total = results.length;
+    const summary = document.createElement('div');
+    summary.className = `summary ${passed === total ? 'pass' : 'fail'}`;
+    summary.textContent = `${passed} / ${total} tests passed`;
+    output.appendChild(summary);
+  </script>
+</body>
+</html>
