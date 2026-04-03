@@ -31,5 +31,6 @@ export function calcNewDifficulty(score) {
 }
 
 export function getDifficultyLabel(difficulty) {
-  return ['', 'Beginner', 'Easy', 'Medium', 'Hard', 'Expert'][difficulty] ?? 'Beginner';
+  const d = Math.max(1, Math.min(5, difficulty));
+  return ['Beginner', 'Easy', 'Medium', 'Hard', 'Expert'][d - 1];
 }

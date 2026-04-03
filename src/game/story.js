@@ -49,7 +49,7 @@ export function checkMastery(chapter, correct, total) {
 }
 
 export function isBossReady(chapter, correct, total) {
-  return total >= chapter.masteryTotal && correct >= chapter.masteryCorrect;
+  return checkMastery(chapter, correct, total);
 }
 
 export function getNextChapterId(currentId) {

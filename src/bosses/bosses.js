@@ -39,7 +39,7 @@ export const BOSSES = [
     id: 4,
     name: 'The Grand Calculator',
     emoji: '🤖',
-    description: 'The ultimate boss! 10 mixed questions in 45 seconds!',
+    description: 'The ultimate boss! 10 big subtraction questions in 45 seconds!',
     type: 'timed',
     skill: SKILLS.DOUBLE_DIGIT_SUB,
     timeLimit: 45,

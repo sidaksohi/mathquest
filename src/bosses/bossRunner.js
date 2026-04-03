@@ -17,6 +17,7 @@ export function getBossQuestion(session) {
 }
 
 export function recordBossAnswer(session, correct) {
+  if (session.finished) return session;
   session.questionsAnswered += 1;
   if (correct) session.questionsCorrect += 1;
   if (session.questionsAnswered >= session.boss.questionCount) {
@@ -27,6 +28,7 @@ export function recordBossAnswer(session, correct) {
 }
 
 export function tickBossTimer(session) {
+  if (session.finished) return session;
   session.timeRemaining = Math.max(0, session.timeRemaining - 1);
   if (session.timeRemaining === 0) {
     session.finished = true;
