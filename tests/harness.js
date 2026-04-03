@@ -1,4 +1,13 @@
 // tests/harness.js
+function deepEqual(a, b) {
+  if (a === b) return true;
+  if (typeof a !== typeof b) return false;
+  if (typeof a !== 'object' || a === null || b === null) return false;
+  const keysA = Object.keys(a), keysB = Object.keys(b);
+  if (keysA.length !== keysB.length) return false;
+  return keysA.every(k => deepEqual(a[k], b[k]));
+}
+
 const results = [];
 
 export function describe(name, fn) {
@@ -23,8 +32,8 @@ export function expect(actual) {
         throw new Error(`Expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
     },
     toEqual(expected) {
-      const a = JSON.stringify(actual), b = JSON.stringify(expected);
-      if (a !== b) throw new Error(`Expected ${b}, got ${a}`);
+      if (!deepEqual(actual, expected))
+        throw new Error(`Expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
     },
     toBeGreaterThan(n) {
       if (actual <= n) throw new Error(`Expected ${actual} > ${n}`);
