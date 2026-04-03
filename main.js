@@ -275,8 +275,11 @@ function handleBossAnswer(chosen, q, grid) {
 }
 
 function endBoss() {
+  if (!bossSession) return;
   clearInterval(bossInterval);
-  const { boss, victory } = bossSession;
+  const session = bossSession;
+  bossSession = null;
+  const { boss, victory } = session;
   const state = getState();
 
   if (victory) {
@@ -313,6 +316,10 @@ function endBoss() {
 // ─── Nav buttons ──────────────────────────────────────────────────────────────
 document.getElementById('btn-game-back').addEventListener('click', () => {
   clearInterval(bossInterval);
+  answerLocked = false;
+  bossAnswerLocked = false;
+  hintUsed = false;
+  bossSession = null;
   resetSession();
   initMenu();
 });
